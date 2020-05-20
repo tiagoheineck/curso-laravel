@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class CidadesSeeder extends Seeder
 {
@@ -12,15 +13,8 @@ class CidadesSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('cidades')
-            ->insert([
-                [
-                    'nome'=>'Videira - SC'
-                ],
-                [
-                    'nome'=>'Fraiburgo - SC'
-                ],
-            ]                
-            );
+        DB::table('cidades')->insert([
+            'nome' => 'Videira - SC'
+        ]);
     }
 }

@@ -2,10 +2,9 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schema;
 
-class AddCidadesTable extends Migration
+class CreateCursosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,11 +13,15 @@ class AddCidadesTable extends Migration
      */
     public function up()
     {
-        Schema::create('cidades', function (Blueprint $table) {
+        Schema::create('cursos', function (Blueprint $table) {
             $table->id();
-            $table->string('nome',255);            
+            $table->string('nome');
+            $table->unsignedBigInteger('cidade_id');
             $table->timestamps();
-            $table->softDeletes();            
+            $table->softDeletes();
+
+            $table->foreign('cidade_id')->references('id')->on('cidades');
+            // $table->foreignId('cidade_id')->constrained('cidades');
         });
     }
 
@@ -29,6 +32,6 @@ class AddCidadesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('cidades');
+        Schema::dropIfExists('cursos');
     }
 }
