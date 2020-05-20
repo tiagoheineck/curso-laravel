@@ -1,10 +1,9 @@
 <?php
 
-use App\Model\Cidade;
+use App\Model\Disciplina;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
-class CidadesSeeder extends Seeder
+class DisciplinaSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,6 +12,6 @@ class CidadesSeeder extends Seeder
      */
     public function run()
     {
-        factory(Cidade::class,20)->create();
+        factory(Disciplina::class,40)->create();
     }
 }
