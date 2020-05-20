@@ -41,7 +41,7 @@ class DisciplinaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Model\Disciplina  $disciplina
+     * @param  \App\Model\Disciplina  $disciplin
      * @return \Illuminate\Http\Response
      */
     public function show(Disciplina $disciplina)
