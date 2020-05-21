@@ -69,7 +69,7 @@ class DisciplinaController extends Controller
     public function edit(Disciplina $disciplina)
     {
         $professores = Professor::orderBy('nome')->get();
-        return view('disciplinas.form',compact('disciplina','professores'));
+        return view('disciplinas.form-collective',compact('disciplina','professores'));
     }
 
     /**
