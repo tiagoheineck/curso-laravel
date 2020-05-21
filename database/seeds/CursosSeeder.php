@@ -14,10 +14,12 @@ class CursosSeeder extends Seeder
     public function run()
     {
         $cidade = Cidade::first();
+        
         Curso::create(
             [
                 'nome'=>'Computação',
-                'cidade_id'=>$cidade->id
+                'cidade_id'=>$cidade->id,
+                'departamento_id'=>rand(1,5)
             ]
         );
     }

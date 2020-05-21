@@ -17,11 +17,19 @@ class AddCursosTable extends Migration
             $table->id();
             $table->string('nome',255);
             $table->unsignedBigInteger('cidade_id');
+            $table->unsignedBigInteger('departamento_id');
             
             $table->foreign('cidade_id')
                 ->references('id')
                 ->on('cidades')
                 ->onDelete('cascade');
+        });
+
+        Schema::table('cursos',function(Blueprint $table){
+            $table->foreign('departamento_id')
+            ->references('id')
+            ->on('departamentos')
+            ->onDelete('cascade');
         });
     }
 

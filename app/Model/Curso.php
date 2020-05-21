@@ -9,7 +9,7 @@ class Curso extends Model
     protected $table = 'cursos';
 
     protected $fillable = [
-        'nome','cidade_id'
+        'nome','cidade_id', 'departamento_id'
     ];
 
     public $timestamps = false;
@@ -17,5 +17,9 @@ class Curso extends Model
     public function cidade()
     {
         return $this->belongsTo('App\Model\Cidade','cidade_id');
+    }
+
+    public function departamento(){
+        return $this->belongsTo('App\Model\Departamento','departamento_id');
     }
 }
