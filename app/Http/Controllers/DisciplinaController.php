@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DisciplinaRequest;
+use App\Model\Professor;
 use App\Model\Disciplina;
 use Illuminate\Http\Request;
 
@@ -14,7 +16,10 @@ class DisciplinaController extends Controller
      */
     public function index()
     {
-        //
+        $disciplinas = Disciplina::orderBy('nome')->paginate();
+        return view('disciplinas.index',compact(
+            'disciplinas'
+        ));
     }
 
     /**
@@ -24,7 +29,9 @@ class DisciplinaController extends Controller
      */
     public function create()
     {
-        //
+        $disciplina = new Disciplina();
+        $professores = Professor::orderBy('nome')->get();
+        return view('disciplinas.form',compact('professores','disciplina'));
     }
 
     /**
@@ -33,9 +40,12 @@ class DisciplinaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(DisciplinaRequest $request)
+    {                
+        $disciplina = Disciplina::create($request->all());
+
+        return redirect("/disciplinas/$disciplina->id")
+            ->with('success','Disciplina cadastrada');
     }
 
     /**
@@ -46,7 +56,8 @@ class DisciplinaController extends Controller
      */
     public function show(Disciplina $disciplina)
     {
-        return $disciplina;       
+        
+          return view('disciplinas.show',compact('disciplina'));
     }
 
     /**
@@ -57,7 +68,8 @@ class DisciplinaController extends Controller
      */
     public function edit(Disciplina $disciplina)
     {
-        //
+        $professores = Professor::orderBy('nome')->get();
+        return view('disciplinas.form',compact('disciplina','professores'));
     }
 
     /**
@@ -67,13 +79,16 @@ class DisciplinaController extends Controller
      * @param  \App\Model\Disciplina  $disciplina
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Disciplina $disciplina)
+    public function update(DisciplinaRequest $request, Disciplina $disciplina)
     {
+        
+        $disciplina->update($request->all());
+
         return redirect()
             ->route('disciplinas.show',[
                     'disciplina'=>$disciplina
                 ]
-            );
+            )->with('success','Salvei seu cadastro');
     }
 
     /**
@@ -84,6 +99,9 @@ class DisciplinaController extends Controller
      */
     public function destroy(Disciplina $disciplina)
     {
-        //
+        $disciplina->delete();
+        return redirect()
+            ->route('disciplinas.index')
+            ->with('success','Usuário removido com sucesso');
     }
 }

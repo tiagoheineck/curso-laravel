@@ -26,7 +26,7 @@ class AddCargaHorariaToDisciplinasTable extends Migration
     public function down()
     {
         Schema::table('disciplinas', function (Blueprint $table) {
-            //
+            $table->dropColumn('carga_horaria');
         });
     }
 }
