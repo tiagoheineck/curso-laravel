@@ -10,9 +10,9 @@
     <div class="card-footer">
         <div class="row">
             
-            <a href=" {{ url('professores/{professore}/edit', ['professor'=>$professor])}} " class="btn btn-info">Editar</a>
+            <a href=" {{ route('professores.edit', ['professor'=>$professor])}} " class="btn btn-info">Editar</a>
 
-            <form action="{{ url('professores/{professore}',['professor'=>$professor])}}" method="POST">
+            <form action="{{ route('professores.destroy',['professor'=>$professor])}}" method="POST">
                 @method('delete')
                 @csrf <!-- token para autorizar a requisição e evitar ataques -->
                 <button type="submit" class="btn btn-danger">Apagar</button>

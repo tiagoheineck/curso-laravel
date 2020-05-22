@@ -16,7 +16,7 @@
                     <td> 
                     <a href="{{ route('professores.show',
                             [
-                                'professore'=>$professor
+                                'professor'=>$professor
                             ]
                         ) }}">
                         {{$professor->nome}}

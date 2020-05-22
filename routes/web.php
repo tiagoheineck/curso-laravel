@@ -24,5 +24,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/disciplinas','DisciplinaController');
 Route::resource('/cursos','CursoController');
 Route::resource('/cidades','CidadeController');
-Route::resource('/professores','ProfessorController');
+//Route::resource('/professores','ProfessorController');
 Route::resource('/departamentos','DepartamentoController');
+
+Route::resource('professores', 'ProfessorController')->parameters([ //professor eu fiz diferente, pois a pluralização do ingles estava gerando rotas tipo .../profesore
+    'professores' => 'professor'
+]);

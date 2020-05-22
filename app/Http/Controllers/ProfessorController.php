@@ -27,7 +27,9 @@ class ProfessorController extends Controller
      */
     public function create()
     {
-        //
+       // $professores = Professor::orderBy('nome')->get();
+        //return view('professores.form',compact('professores'));
+        return view('professores.form');
     }
 
     /**
@@ -38,7 +40,10 @@ class ProfessorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $professor = Professor::create($request->all());
+
+        return redirect("professores/$professor->id")
+            ->with('success','Professor cadastrado com sucesso');
     }
 
     /**
@@ -58,9 +63,9 @@ class ProfessorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Professor $professor)
     {
-        //
+        return view('professores.edit',compact('professor'));
     }
 
     /**
@@ -70,9 +75,16 @@ class ProfessorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Professor $professor)
     {
-        //
+        $professor->update($request->all());
+
+
+        return redirect()
+            ->route('professores.show',[
+                    'professor'=>$professor
+                ]
+            )->with('success','Cadastro atualizado com sucesso.');
     }
 
     /**
@@ -81,8 +93,11 @@ class ProfessorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Professor $professor)
     {
-        //
+        $professor->delete();
+        return redirect()
+                ->route('professores.index')
+                ->with('success','professor removido com sucesso'); //flash data
     }
 }
