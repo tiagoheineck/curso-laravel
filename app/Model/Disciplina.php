@@ -13,7 +13,8 @@ class Disciplina extends Model
 
     protected $fillable = [
         'nome',
-        'carga_horaria'
+        'carga_horaria',
+        'professor_id'
     ];
 
     public function professor()
