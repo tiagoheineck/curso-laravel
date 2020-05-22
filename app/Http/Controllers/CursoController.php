@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Curso;
+use App\Model\Cidade;
 use App\Model\Departamento;
 use Illuminate\Http\Request;
 
-class DepartamentoController extends Controller
+class CursoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +16,9 @@ class DepartamentoController extends Controller
      */
     public function index()
     {
-        $departamentos = Departamento::orderBy('nome')->paginate(); //get() traz tudo, caso nao queira paginate
-        return view('departamentos.index', compact(
-            'departamentos'
+        $cursos = Curso::orderBy('nome')->paginate(); //get() traz tudo, caso nao queira paginate
+        return view('cursos.index', compact(
+            'cursos'
         ));
     }
 
@@ -27,8 +29,9 @@ class DepartamentoController extends Controller
      */
     public function create()
     {
+        $cidades = Cidade::orderBy('nome')->get();
         $departamentos = Departamento::orderBy('nome')->get();
-        return view('departamentos.form',compact('departamentos'));
+        return view('cursos.form',compact('cidades','departamentos'));
     }
 
     /**
@@ -39,49 +42,52 @@ class DepartamentoController extends Controller
      */
     public function store(Request $request)
     {
-        $departamento = departamento::create($request->all());
+        //dd($request->all());
+        $curso = Curso::create($request->all());
 
-        return redirect("departamentos/$departamento->id")
-            ->with('success','departamento cadastrado com sucesso');
+        return redirect("cursos/$curso->id")
+            ->with('success','Curso cadastrado com sucesso');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Model\Departamento  $departamento
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Departamento $departamento)
+    public function show(Curso $curso)
     {
-        return view('departamentos.show', compact('departamento'));
+        return view('cursos.show', compact('curso'));      
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Model\Departamento  $departamento
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Departamento $departamento)
+    public function edit(Curso $curso)
     {
-        return view('departamentos.edit',compact('departamento'));
+        $cidades = Cidade::orderBy('nome')->get();
+        $departamentos = Departamento::orderBy('nome')->get();
+        return view('cursos.edit',compact('curso','cidades','departamentos'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\Departamento  $departamento
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Departamento $departamento)
+    public function update(Request $request, Curso $curso)
     {
-        $departamento->update($request->all());
+        $curso->update($request->all());
 
 
         return redirect()
-            ->route('departamentos.show',[
-                    'departamento'=>$departamento
+            ->route('cursos.show',[
+                    'curso'=>$curso
                 ]
             )->with('success','Cadastro atualizado com sucesso.');
     }
@@ -89,14 +95,14 @@ class DepartamentoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Model\Departamento  $departamento
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Departamento $departamento)
+    public function destroy(Curso $curso)
     {
-        $departamento->delete();
+        $curso->delete();
         return redirect()
-                ->route('departamentos.index')
-                ->with('success','departamento removida com sucesso'); //flash data
+                ->route('cursos.index')
+                ->with('success','curso removido com sucesso'); //flash data
     }
 }
