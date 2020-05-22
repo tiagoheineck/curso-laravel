@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class DisciplinaRequest extends FormRequest
+class CursoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,11 +23,10 @@ class DisciplinaRequest extends FormRequest
      */
     public function rules()
     {
-        
         return[
             'nome'  => 'required',
-            'carga_horaria'  => 'required',
-            'professor_id'  => 'required'
+            'cidade_id'  => 'required',
+            'departamento_id'  => 'required'
 
         ];
     }
@@ -35,8 +34,8 @@ class DisciplinaRequest extends FormRequest
     public function attributes() //para as mensagens de erro/sucesso virem customizadas e não com o nome da coluna
     {
         return [
-            'carga_horaria'=>'Carga horária',
-            'professor_id'=>'Professor'
+            'cidade_id'=>'Cidade',
+            'departamento_id'=>'Departamento'
         ];
     } 
 
@@ -44,8 +43,8 @@ class DisciplinaRequest extends FormRequest
     {
         return[
             'nome.required'=>'O nome é obrigatório',
-            'professor_id.required'=>'Escolha um professor',
-            'carga_horaria.required'=>'Insira a carga horária'
+            'cidade_id.required'=>'Escolha uma cidade',
+            'departamento_id.required'=>'Escolha um departamento'
         ];
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Model\Departamento;
 use Illuminate\Http\Request;
+use App\Http\Requests\DepartamentoRequest;
 
 class DepartamentoController extends Controller
 {
@@ -37,7 +38,7 @@ class DepartamentoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DepartamentoRequest $request)
     {
         $departamento = departamento::create($request->all());
 
@@ -74,7 +75,7 @@ class DepartamentoController extends Controller
      * @param  \App\Model\Departamento  $departamento
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Departamento $departamento)
+    public function update(DepartamentoRequest $request, Departamento $departamento)
     {
         $departamento->update($request->all());
 

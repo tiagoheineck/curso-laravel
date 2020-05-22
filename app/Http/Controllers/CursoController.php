@@ -6,6 +6,7 @@ use App\Model\Curso;
 use App\Model\Cidade;
 use App\Model\Departamento;
 use Illuminate\Http\Request;
+use App\Http\Requests\CursoRequest;
 
 class CursoController extends Controller
 {
@@ -40,7 +41,7 @@ class CursoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CursoRequest $request)
     {
         //dd($request->all());
         $curso = Curso::create($request->all());
@@ -80,7 +81,7 @@ class CursoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Curso $curso)
+    public function update(CursoRequest $request, Curso $curso)
     {
         $curso->update($request->all());
 

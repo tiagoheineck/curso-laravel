@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Model\Professor;
 use Illuminate\Http\Request;
+use App\Http\Requests\ProfessorRequest;
 
 class ProfessorController extends Controller
 {
@@ -38,7 +39,7 @@ class ProfessorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProfessorRequest $request)
     {
         $professor = Professor::create($request->all());
 
@@ -75,7 +76,7 @@ class ProfessorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Professor $professor)
+    public function update(ProfessorRequest $request, Professor $professor)
     {
         $professor->update($request->all());
 
