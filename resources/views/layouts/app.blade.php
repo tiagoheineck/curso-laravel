@@ -33,9 +33,20 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                          </button>
+                          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                            <div class="navbar-nav">
+                              <a class="nav-item nav-link active" href="{{ url('/home') }}">Home<span class="sr-only">(current)</span></a>
+                              <a class="nav-item nav-link" href="{{ url('/disciplinas') }}">Discplinas</a>
+                              <a class="nav-item nav-link" href="#">Professores</a>
+                              <a class="nav-item nav-link" href="#">Cursos</a>
+                              <a class="nav-item nav-link" href="#">Departamentos</a>
+                              <a class="nav-item nav-link" href="#">Cidades</a>
+                            </div>                            
                     </ul>
-
+                                        
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
