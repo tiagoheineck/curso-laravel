@@ -29,13 +29,24 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
+                @auth
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                            <div class="navbar-nav">
+                            <a class="nav-item nav-link active" href="{{ url('/home') }}">Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-item nav-link" href="{{ url('/disciplinas') }}">Disciplinas</a>
+                            <a class="nav-item nav-link" href="{{ url('/disciplinas') }}">Professores</a>
+                            <a class="nav-item nav-link" href="{{ url('/disciplinas') }}">Departamentos</a>
+                            <a class="nav-item nav-link" href="{{ url('/disciplinas') }}">Cursos</a>
+                            <a class="nav-item nav-link" href="{{ url('/disciplinas') }}">Cidades</a>                            </div>
+                        </div>
                     </ul>
-
+                @endauth
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
