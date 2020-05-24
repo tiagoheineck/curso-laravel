@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Professor;
 use App\Model\Departamento;
 use Illuminate\Http\Request;
+use App\Http\Requests\DepartamentoRequest;
 
 class DepartamentoController extends Controller
 {
@@ -14,7 +16,10 @@ class DepartamentoController extends Controller
      */
     public function index()
     {
-        //
+        $departamentos = Departamento::orderBy('nome')->paginate();
+        return view('departamentos.index',compact(
+            'departamentos'
+        ));
     }
 
     /**
@@ -24,7 +29,9 @@ class DepartamentoController extends Controller
      */
     public function create()
     {
-        //
+        $departamento = new Departamento();
+        $professores = Professor::orderBy('nome')->get();
+        return view('departamentos.form',compact('professores','departamento'));
     }
 
     /**
@@ -33,9 +40,12 @@ class DepartamentoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(DepartamentoRequest $request)
+    {                
+        $departamento = Departamento::create($request->all());
+
+        return redirect("/departamentos/$departamento->id")
+            ->with('success','Departamento cadastrado');
     }
 
     /**
@@ -46,7 +56,8 @@ class DepartamentoController extends Controller
      */
     public function show(Departamento $departamento)
     {
-        //
+        
+          return view('departamentos.show',compact('departamento'));
     }
 
     /**
@@ -57,7 +68,8 @@ class DepartamentoController extends Controller
      */
     public function edit(Departamento $departamento)
     {
-        //
+        $professores = Professor::orderBy('nome')->get();
+        return view('departamentos.form-collective',compact('departamento','professores'));
     }
 
     /**
@@ -67,9 +79,16 @@ class DepartamentoController extends Controller
      * @param  \App\Model\Departamento  $departamento
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Departamento $departamento)
+    public function update(DepartamentoRequest $request, Departamento $departamento)
     {
-        //
+        
+        $departamento->update($request->all());
+
+        return redirect()
+            ->route('departamentos.show',[
+                    'departamento'=>$departamento
+                ]
+            )->with('success','Salvei seu cadastro');
     }
 
     /**
@@ -80,6 +99,9 @@ class DepartamentoController extends Controller
      */
     public function destroy(Departamento $departamento)
     {
-        //
+        $departamento->delete();
+        return redirect()
+            ->route('departamentos.index')
+            ->with('success','Usuário removido com sucesso');
     }
 }

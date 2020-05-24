@@ -41,7 +41,7 @@
                             <a class="nav-item nav-link active" href="{{ url('/home') }}">Home <span class="sr-only">(current)</span></a>
                             <a class="nav-item nav-link" href="{{ url('/disciplinas') }}">Disciplinas</a>
                             <a class="nav-item nav-link" href="{{ url('/professores') }}">Professores</a>
-                            <a class="nav-item nav-link" href="{{ url('/disciplinas') }}">Departamentos</a>
+                            <a class="nav-item nav-link" href="{{ url('/departamentos') }}">Departamentos</a>
                             <a class="nav-item nav-link" href="{{ url('/cursos') }}">Cursos</a>
                             <a class="nav-item nav-link" href="{{ url('/cidades') }}">Cidades</a>                            </div>
                         </div>
