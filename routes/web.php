@@ -22,3 +22,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('/disciplinas','DisciplinaController');
+
+
+Route::resource('/professores','ProfessorController')->parameters(['professores' => 'professor']);;
+
+Route::resource('/departamentos','DepartamentoController');

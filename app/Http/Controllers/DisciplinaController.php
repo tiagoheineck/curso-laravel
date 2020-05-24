@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Professor;
 use App\Model\Disciplina;
+use App\Http\Requests\DisciplinaRequest;
 use Illuminate\Http\Request;
+
+
 
 class DisciplinaController extends Controller
 {
@@ -14,7 +18,11 @@ class DisciplinaController extends Controller
      */
     public function index()
     {
-        //
+        //Call a view
+        $disciplinas = Disciplina::orderBy('nome')->paginate();
+        return view('disciplinas.index', compact(
+          'disciplinas'
+        ));
     }
 
     /**
@@ -24,7 +32,9 @@ class DisciplinaController extends Controller
      */
     public function create()
     {
-        //
+        $disciplina = new Disciplina();
+        $professores = Professor::orderBy('nome')->get();
+        return view('disciplinas.form', compact('professores', 'disciplina'));
     }
 
     /**
@@ -33,9 +43,31 @@ class DisciplinaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    //public function store(Request $request)
+    public function store(DisciplinaRequest $request)
     {
-        //
+        /*
+        //$professor = Professor::findOrFail($request->professor_id);
+
+        $disciplina = new Disciplina();
+        $disciplina->nome = $request->nome;
+        //$disciplina->professor()->associate($professor);
+        $disciplina->professor_id = $request->professor_id;
+        $disciplina->save();
+
+        $request->validate(
+          [
+           'nome'            =>'required',
+           'carga_horaria'   =>'required',
+           'professor_id'    =>'required'
+         ]
+        );
+        */
+
+        $disciplina = Disciplina::create($request->all());
+
+        return redirect("/disciplinas/$disciplina->id")
+          ->with('success', 'Disciplina cadastrada');
     }
 
     /**
@@ -46,7 +78,7 @@ class DisciplinaController extends Controller
      */
     public function show(Disciplina $disciplina)
     {
-        return $disciplina;       
+        return view('disciplinas.show', compact('disciplina'));
     }
 
     /**
@@ -57,7 +89,10 @@ class DisciplinaController extends Controller
      */
     public function edit(Disciplina $disciplina)
     {
-        //
+      $professores = Professor::orderBy('nome')->get();
+      return view('disciplinas.edit', compact(
+        'disciplina', 'professores'
+      ));
     }
 
     /**
@@ -67,13 +102,24 @@ class DisciplinaController extends Controller
      * @param  \App\Model\Disciplina  $disciplina
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Disciplina $disciplina)
+    public function update(DisciplinaRequest $request, Disciplina $disciplina)
     {
+        /*
+        $disciplina->nome = $request->nome;
+        $disciplina->carga_horaria = $request->carga_horaria;
+        $disciplina->professor_id = $request->professor_id;
+        $disciplina->save();
+        */
+
+        //$disciplina->fill($request->all());
+        $disciplina->update($request->all());
+        $disciplina->save();
+
         return redirect()
             ->route('disciplinas.show',[
                     'disciplina'=>$disciplina
                 ]
-            );
+            )->with('success', 'Discplina alterada com sucesso');
     }
 
     /**
@@ -84,6 +130,9 @@ class DisciplinaController extends Controller
      */
     public function destroy(Disciplina $disciplina)
     {
-        //
+        $disciplina->delete();
+        return redirect()
+          ->route('disciplinas.index')
+          ->with('success', 'Usuário removido com sucesso.');
     }
 }

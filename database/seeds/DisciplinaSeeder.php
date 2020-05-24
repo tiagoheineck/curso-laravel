@@ -13,5 +13,6 @@ class DisciplinaSeeder extends Seeder
     public function run()
     {
         factory(Disciplina::class,40)->create();
+
     }
 }
