@@ -1,6 +1,8 @@
 @extends('disciplinas.module')
 
-@section('header',$disciplina->nome)@show
+@section('header',$disciplina->nome)
+
+@show
 
 @section('body')
 
