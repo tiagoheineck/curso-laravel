@@ -50,7 +50,7 @@ class ProfessorController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Model\Professor  $disciplina
+     * @param  \App\Model\Professor  $professor
      * @return \Illuminate\Http\Response
      */
     public function show(Professor $professor)
@@ -61,7 +61,7 @@ class ProfessorController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Model\Professor  $disciplina
+     * @param  \App\Model\Professor  $professor
      * @return \Illuminate\Http\Response
      */
     public function edit(Professor $professor)
@@ -79,7 +79,7 @@ class ProfessorController extends Controller
     public function update(ProfessorRequest $request, Professor $professor)
     {
         
-        $disciplina->update($request->all());
+        $professor->update($request->all());
 
         return redirect()
             ->route('professores.show',[
@@ -91,7 +91,7 @@ class ProfessorController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Model\Professor  $disciplina
+     * @param  \App\Model\Professor  $professor
      * @return \Illuminate\Http\Response
      */
     public function destroy(Professor $professor)
