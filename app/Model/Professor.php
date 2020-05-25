@@ -4,9 +4,11 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+//use Illuminate\Foundation\Auth\User as Authenticatable;
 
+
+//class Professor extends Model, Authenticatable {
 class Professor extends Model {
-
     use SoftDeletes;
 
     //If you don not create the classes in pure English,
@@ -15,7 +17,8 @@ class Professor extends Model {
 
     //Here you set which fields can be filled by a seeder or factory (to avoid mass assignment vulnerability)
     protected $fillable = [
-        'nome'
+        'nome',
+        'user_id'
     ];
 
     //One professor has many matters

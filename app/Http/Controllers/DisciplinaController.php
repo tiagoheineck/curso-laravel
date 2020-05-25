@@ -5,19 +5,17 @@ namespace App\Http\Controllers;
 use App\Model\Professor;
 use App\Model\Disciplina;
 use App\Http\Requests\DisciplinaRequest;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 
 
 
 class DisciplinaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
+        //if(Gate::denies('admin')) abort(403);
         //Call a view
         $disciplinas = Disciplina::orderBy('nome')->paginate();
         return view('disciplinas.index', compact(

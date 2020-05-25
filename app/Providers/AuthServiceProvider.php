@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Providers;
-
+use \App\Model\Conteudo;
+use App\Policies\ConteudoPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -14,6 +15,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         // 'App\Model' => 'App\Policies\ModelPolicy',
+        Conteudo::class => ConteudoPolicy::class,
     ];
 
     /**
@@ -25,6 +27,14 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('admin', function($user){
+            return $user->admin;
+        });
+
+        Gate::define('professor', function($user){
+            return $user->professor;
+        });
+
+
     }
 }

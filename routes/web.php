@@ -21,9 +21,14 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('/disciplinas','DisciplinaController');
+Route::resource('/disciplinas','DisciplinaController')
+  ->middleware(['auth', 'can:admin']);//if user is logged, he can access the pages
 
 
-Route::resource('/professores','ProfessorController')->parameters(['professores' => 'professor']);;
+Route::resource('/professores','ProfessorController')
+  ->parameters(['professores' => 'professor']);//errors on plurals
 
 Route::resource('/departamentos','DepartamentoController');
+
+Route::resource('/conteudos','ConteudoController')
+  ->middleware(['auth', 'can:professor']);//if user is logged, he can access the pages;

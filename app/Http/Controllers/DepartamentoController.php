@@ -72,10 +72,12 @@ class DepartamentoController extends Controller
      */
     public function edit(Departamento $departamento)
     {
-      $professores = Professor::orderBy('nome')->get();
-      return view('departamentos.edit', compact(
-        'departamento', 'professores'
-      ));
+
+        $professores = Professor::orderBy('nome')->get();
+        return view('departamentos.edit', compact(
+          'departamento', 'professores'
+        ));
+
     }
 
     /**
