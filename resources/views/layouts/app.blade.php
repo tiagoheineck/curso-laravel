@@ -43,7 +43,9 @@
                             <a class="nav-item nav-link" href="{{ url('/professores') }}">Professores</a>
                             <a class="nav-item nav-link" href="{{ url('/departamentos') }}">Departamentos</a>
                             <a class="nav-item nav-link" href="{{ url('/cursos') }}">Cursos</a>
-                            <a class="nav-item nav-link" href="{{ url('/cidades') }}">Cidades</a>                            </div>
+                            <a class="nav-item nav-link" href="{{ url('/cidades') }}">Cidades</a>
+                            <a class="nav-item nav-link" href="{{ url('/conteudos') }}">Conteudos</a>                            
+                            </div>
                         </div>
                     </ul>
                 @endauth
