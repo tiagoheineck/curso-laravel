@@ -56,7 +56,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    @can('isAdmin2',$disciplina)
+                                    @can('isAdmin')
                                     <a class="dropdown-item" href="{{ route('disciplinas.index') }}">
                                         Disciplinas
                                     </a>
