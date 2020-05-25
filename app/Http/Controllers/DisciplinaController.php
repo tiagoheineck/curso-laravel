@@ -13,8 +13,7 @@ class DisciplinaController extends Controller
         
 
     public function index()
-    {        
-        Gate::allows('isAdmin',$disciplina);
+    {                
         $disciplinas = Disciplina::orderBy('nome')->paginate();
         return view('disciplinas.index',compact(
             'disciplinas'
