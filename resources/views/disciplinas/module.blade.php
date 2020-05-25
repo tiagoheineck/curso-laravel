@@ -11,9 +11,20 @@
         <div class="card-body">            
             @yield('body')
         </div>
-        <div class="footer">
+        <div class="card-footer">
             @yield('footer')
         </div>
     </div>
 </div>  
+@endsection
+
+@push('javascript')
+
+<script> 
+    console.log("olá, a partir do módulo")
+</script>
+@endpush
+
+@section('js-teste')
+    <script>console.log('outro teste')</script>
 @endsection

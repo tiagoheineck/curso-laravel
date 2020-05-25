@@ -18,6 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @stack('css')
 </head>
 <body>
     <div id="app">
@@ -55,6 +56,13 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    @can('isAdmin2',$disciplina)
+                                    <a class="dropdown-item" href="{{ route('disciplinas.index') }}">
+                                        Disciplinas
+                                    </a>
+                                    @endcan
+                                    
+                                    
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -82,5 +90,12 @@
             @yield('content')
         </main>
     </div>
+
+    @stack('javascript')
+
+
+    @yield('js-teste')
+    
+
 </body>
 </html>

@@ -12,7 +12,8 @@
                 @endforeach
             </ul>
         </div>
-    @endif
+    @endif 
+                
 
     {!!
         Form::model($disciplina,[
@@ -21,7 +22,8 @@
             'method'=> 'put'
         ])
         .    
-        Form::label('nome') .
+        Form::label('nome')
+        .
         Form::text('nome',$disciplina->nome,[
             'class'=>'form-control'
         ])
@@ -34,7 +36,8 @@
         .
         Form::label('Professor') 
         .
-        Form::select('professor_id',$professores->pluck('nome','id'),null,[
+        Form::select('professor_id',$professores->pluck('nome','id'),null,        
+        [
             'class'=>'form-control'
         ])
         .
@@ -44,5 +47,5 @@
 @endsection
 
 @section('footer')
-    {!! Form::submit('Salvar',['form'=>'form-disciplina'])  !!}
+    {!! Form::submit('Salvar',['form'=>'form-disciplina','class'=>'btn btn-info'])  !!}
 @endsection

@@ -21,4 +21,5 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('/disciplinas','DisciplinaController');
+Route::resource('/disciplinas','DisciplinaController')
+    ->middleware(['auth','can:isAdmin']);

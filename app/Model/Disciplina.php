@@ -2,12 +2,13 @@
 
 namespace App\Model;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Disciplina extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes;        
 
     protected $table = 'disciplinas';
 
@@ -20,5 +21,6 @@ class Disciplina extends Model
     public function professor()
     {
         return $this->belongsTo('App\Model\Professor','professor_id');
-    }
+    }    
+
 }

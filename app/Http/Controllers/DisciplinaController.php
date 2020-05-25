@@ -2,20 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\DisciplinaRequest;
 use App\Model\Professor;
 use App\Model\Disciplina;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
+use App\Http\Requests\DisciplinaRequest;
 
 class DisciplinaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+        
+
     public function index()
-    {
+    {        
+        Gate::allows('isAdmin',$disciplina);
         $disciplinas = Disciplina::orderBy('nome')->paginate();
         return view('disciplinas.index',compact(
             'disciplinas'
@@ -42,6 +41,7 @@ class DisciplinaController extends Controller
      */
     public function store(DisciplinaRequest $request)
     {                
+        
         $disciplina = Disciplina::create($request->all());
 
         return redirect("/disciplinas/$disciplina->id")
