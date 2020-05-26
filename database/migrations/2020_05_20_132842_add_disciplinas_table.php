@@ -17,6 +17,8 @@ class AddDisciplinasTable extends Migration
             $table->id();
             $table->string('nome',255);
             $table->unsignedBigInteger('professor_id');
+            $table->timestamps();
+            $table->softDeletes();
             
             $table->foreign('professor_id')
                 ->references('id')

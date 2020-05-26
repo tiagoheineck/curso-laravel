@@ -18,6 +18,7 @@ class CreateDepartamentosTable extends Migration
             $table->string('nome');
             $table->unsignedBigInteger('chefe_id');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('chefe_id')
                 ->references('id')

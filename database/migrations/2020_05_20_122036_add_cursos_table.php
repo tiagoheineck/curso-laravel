@@ -17,6 +17,8 @@ class AddCursosTable extends Migration
             $table->id();
             $table->string('nome',255);
             $table->unsignedBigInteger('cidade_id');
+            $table->timestamps();
+            $table->softDeletes();
             
             $table->foreign('cidade_id')
                 ->references('id')
