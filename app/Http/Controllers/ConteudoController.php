@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Model\Conteudo;
+use App\Model\Professor;
 use App\Model\Disciplina;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ConteudoController extends Controller
 {
@@ -28,7 +30,10 @@ class ConteudoController extends Controller
      */
     public function create()
     {
-        $disciplinas = Disciplina::orderBy('nome')->get();
+        foreach(Professor::where('user_id',Auth::id())->get() as $professor){
+            $disciplinas=Disciplina::where('professor_id',$professor->id)->get();
+        }
+
         return view('conteudos.form',compact('disciplinas'));
     }
 
