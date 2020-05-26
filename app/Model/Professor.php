@@ -12,7 +12,7 @@ class Professor extends Model
     protected $table = 'professores';
 
     protected $fillable = [
-        'nome'
+        'nome','user_id'
     ];
 
     public function disciplinas()

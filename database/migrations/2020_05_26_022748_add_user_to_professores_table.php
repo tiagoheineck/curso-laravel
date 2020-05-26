@@ -14,7 +14,12 @@ class AddUserToProfessoresTable extends Migration
     public function up()
     {
         Schema::table('professores', function (Blueprint $table) {
-            //
+            $table->unsignedBigInteger('user_id')->nullable();
+
+            $table->foreign('user_id')
+            ->references('id')
+            ->on('users')
+            ->onDelete('cascade');
         });
     }
 
@@ -26,7 +31,7 @@ class AddUserToProfessoresTable extends Migration
     public function down()
     {
         Schema::table('professores', function (Blueprint $table) {
-            //
+            $table->dropColum('user_id');
         });
     }
 }

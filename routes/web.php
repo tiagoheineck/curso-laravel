@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\CheckProfessor;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,4 +32,4 @@ Route::resource('professores', 'ProfessorController')->parameters([ //professor 
     'professores' => 'professor'
 ]);
 
-Route::resource('/conteudos','ConteudoController');
+Route::resource('/conteudos','ConteudoController')->middleware(CheckProfessor::class);
