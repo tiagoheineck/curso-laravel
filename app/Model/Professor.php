@@ -12,12 +12,18 @@ class Professor extends Model
     protected $table = 'professores';
 
     protected $fillable = [
-        'nome'
+        'nome',
+        'user_id'
     ];
 
     public function disciplinas()
     {
         return $this->hasMany('App\Model\Disciplina','professor_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User','user_id');
     }
 
     public function departamentos()
@@ -29,5 +35,4 @@ class Professor extends Model
             'departamento_id'
         );
     }
-    
 }

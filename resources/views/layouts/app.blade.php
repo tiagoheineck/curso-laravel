@@ -66,12 +66,12 @@
                                     </form>
                                 </div>
                             </li>
+                            
                         @endguest
                     </ul>
                 </div>
             </div>
         </nav>
-
         <main class="py-4">
             @if(session('success'))
                 <div class="alert alert-success">

@@ -4,8 +4,6 @@
 
 @section('body')
 
-{{ __('Departament')  }}
-
 @if ($errors->any())
 <div class="alert alert-danger">
     <ul>
@@ -38,11 +36,12 @@
         <select name="professor_id" id="professor" class="form-control">
             <option value=""></option>
             @foreach ($professores as $professor)
-                <option value="{{ $professor->id }}" @if(
-                    $professor->id == old('professor_id')
-                )
+                <option value="{{ $professor->id }}" 
+                    @if($professor->id == old('professor_id'))
                         selected
-                 @endif   > {{ $professor->nome }} </option>    
+                    @elseif ($professor->id == $disciplina->professor_id)
+                        selected
+                    @endif   > {{ $professor->nome }} </option>    
             @endforeach
         </select>
         @error('professor_id')

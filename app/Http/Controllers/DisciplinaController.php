@@ -81,7 +81,6 @@ class DisciplinaController extends Controller
      */
     public function update(DisciplinaRequest $request, Disciplina $disciplina)
     {
-        
         $disciplina->update($request->all());
 
         return redirect()

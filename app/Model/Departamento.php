@@ -4,9 +4,15 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class Departamento extends Model
 {
     protected $table = 'departamentos';
+
+    protected $fillable = [
+        'nome',
+        'chefe_id'
+    ];
 
     public function chefe()
     {

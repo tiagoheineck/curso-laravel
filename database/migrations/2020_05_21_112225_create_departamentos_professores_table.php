@@ -14,6 +14,7 @@ class CreateDepartamentosProfessoresTable extends Migration
     public function up()
     {
         Schema::create('departamentos_professores', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('departamento_id');            
             $table->unsignedBigInteger('professor_id');            
             
@@ -26,13 +27,6 @@ class CreateDepartamentosProfessoresTable extends Migration
                 ->references('id')
                 ->on('professores')
                 ->onDelete('cascade');
-
-            $table->primary(
-                [
-                    'departamento_id',
-                    'professor_id'
-                ]
-            );
         });
     }
 

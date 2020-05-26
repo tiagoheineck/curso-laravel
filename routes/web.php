@@ -21,4 +21,15 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('/disciplinas','DisciplinaController');
+//
+Route::resource('/professores', 'ProfessorController')->parameters([
+    'professores' => 'professor'
+])->middleware('auth');
+Route::resource('/disciplinas','DisciplinaController')->middleware('auth');
+Route::resource('/departamentos','DepartamentoController')->middleware('auth');
+Route::resource('/departamentosprofessores','DepartamentoProfessorController')->parameters([
+    'departamentosprofessores' => 'departamentoProfessor'
+])->middleware('auth');
+Route::resource('/cidades','CidadeController')->middleware('auth');
+Route::resource('/cursos','CursoController')->middleware('auth');
+Route::resource('/conteudos','ConteudoController')->middleware('professor');

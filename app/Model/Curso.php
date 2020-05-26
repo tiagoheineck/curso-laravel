@@ -9,7 +9,8 @@ class Curso extends Model
     protected $table = 'cursos';
 
     protected $fillable = [
-        'nome','cidade_id'
+        'nome',
+        'cidade_id'
     ];
 
     public $timestamps = false;
