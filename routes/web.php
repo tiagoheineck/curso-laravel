@@ -30,3 +30,5 @@ Route::resource('/departamentos','DepartamentoController');
 Route::resource('professores', 'ProfessorController')->parameters([ //professor eu fiz diferente, pois a pluralização do ingles estava gerando rotas tipo .../profesore
     'professores' => 'professor'
 ]);
+
+Route::resource('/conteudos','ConteudoController');

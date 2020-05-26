@@ -21,4 +21,9 @@ class Disciplina extends Model
     {
         return $this->belongsTo('App\Model\Professor','professor_id');
     }
+
+    public function conteudo()
+    {
+        return $this->hasMany('App\Model\Conteudo', 'disciplina_id');
+    }
 }
