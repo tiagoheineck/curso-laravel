@@ -19,6 +19,9 @@
         <li class="nav-item {{ (strstr(Route::currentRouteName(),'professores')) ? 'active' : '' }}">
             <a class="nav-link" href="/professores">Professores</a>
         </li>
+        <li class="nav-item {{ (strstr(Route::currentRouteName(),'conteudos')) ? 'active' : '' }}">
+          <a class="nav-link" href="/conteudos">Conteúdos</a>
+      </li>
       </ul>
     </div>
   </nav>

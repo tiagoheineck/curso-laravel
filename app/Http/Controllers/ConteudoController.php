@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Model\Conteudo;
+use App\Model\Disciplina;
 use Illuminate\Http\Request;
 
 class ConteudoController extends Controller
@@ -14,7 +15,10 @@ class ConteudoController extends Controller
      */
     public function index()
     {
-        //
+        $conteudos = Conteudo::orderBy('titulo')->paginate(); //get() traz tudo, caso nao queira paginate
+        return view('conteudos.index', compact(
+            'conteudos'
+        ));
     }
 
     /**
@@ -24,7 +28,8 @@ class ConteudoController extends Controller
      */
     public function create()
     {
-        //
+        $disciplinas = Disciplina::orderBy('nome')->get();
+        return view('conteudos.form',compact('disciplinas'));
     }
 
     /**
@@ -35,7 +40,10 @@ class ConteudoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $conteudo = Conteudo::create($request->all());
+
+        return redirect("conteudos/$conteudo->id")
+            ->with('success','Conteúdo cadastrado com sucesso');
     }
 
     /**
@@ -46,7 +54,7 @@ class ConteudoController extends Controller
      */
     public function show(Conteudo $conteudo)
     {
-        //
+        return view('conteudos.show', compact('conteudo'));  
     }
 
     /**
